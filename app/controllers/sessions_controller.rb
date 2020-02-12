@@ -4,18 +4,18 @@ class SessionsController < ApplicationController
   skip_before_action :authorize_user, only: [:create]
 
   def create
-    user = User.find_by(email: params[:email]).try(:authenticate, params[:password])
+    user = User.find_by(email: params[:user][:email]).try(:authenticate, params[:user][:password])
 
     if user
       session[:user_id] = user.id
-      redirect_to '/', status: :ok
+      redirect_back(fallback_location: root_path)
     else
-      redirect_to '/login', status: :unauthorized
+      redirect_to login_path, alert: 'Login Incorrect'
     end
   end
 
-  def logout
+  def destroy
     session[:user_id] = nil
-    redirect_to '/login', status: :ok
+    redirect_to login_path, notice: 'You have been successfully logged out'
   end
 end

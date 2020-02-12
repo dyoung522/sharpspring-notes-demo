@@ -8,18 +8,17 @@ class UsersController < ApplicationController
 
     if @user.valid?
       session[:user_id] = @user.id
-      redirect_to '/', status: :created
+      render root_path, status: :created
     else
-      redirect_to '/login', status: :unprocessable_entity
+      render login_path, status: :unprocessable_entity, alert: 'Invalid credentials provided'
     end
   end
 
   def home; end
 
   def login
-    redirect_to('/') && return if logged_in?
-
     @user = User.new
+    redirect_to root_path if logged_in?
   end
 
   private
