@@ -3,7 +3,9 @@
 require 'capybara/rspec'
 require 'simplecov'
 
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_filter [%r{app/channels}, %r{app/jobs}, %r{app/mailers}]
+end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before { @user = create :user }
-
-  it 'Should be a valid user' do
-    expect(@user.valid?).to eq true
-    expect(User.last.password_digest.nil?).to be false
-  end
+  it { should have_secure_password }
+  it { should validate_presence_of(:email) }
+  it { should validate_uniqueness_of(:email) }
 end
