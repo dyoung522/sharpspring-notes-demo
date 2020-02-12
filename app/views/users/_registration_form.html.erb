@@ -1,0 +1,13 @@
+<h1>Please Register</h1>
+<%= form_for @user, url: { action: 'create' } do |f|%>
+  <%= f.text_field :name%><br>
+  <%= f.label :name%><br>
+  <%= f.text_field :email%><br>
+  <%= f.label :email%><br>
+  <%= f.password_field :password%><br>
+  <%= f.label :password%><br>
+  <%= f.password_field :password_confirmation%><br>
+  <%= f.label :password_confirmation%><br>
+  <%= f.submit 'Register' %>
+<%end%>
+<p>If you already have an account, please <%= link_to 'Login', login_path(register: false)%>

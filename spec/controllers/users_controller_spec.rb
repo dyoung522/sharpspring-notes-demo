@@ -8,17 +8,33 @@ RSpec.describe UsersController, type: :controller do
       get :login
       expect(response).to have_http_status(:success)
     end
+
+    it 'redirects to home page when already logged in' do
+      session[:user_id] = create(:user).id
+      get :login
+
+      expect(response).to redirect_to('/')
+    end
   end
 
   describe 'POST #create' do
-    it 'returns http created when valid' do
+    it 'redirects to the login page when user exists' do
+      create(:user)
       post :create, params: { user: attributes_for(:user) }
-      expect(response).to have_http_status(:created)
+
+      expect(response).to redirect_to('/login')
+      expect(flash[:alert]).to match(/user.*exists.*log in/i)
     end
 
-    it 'returns http unprocessable_entity when invalid' do
+    it 'redirects to the home page when valid' do
+      post :create, params: { user: attributes_for(:user) }
+      expect(response).to redirect_to('/')
+    end
+
+    it 'redirects back to the registration page when invalid' do
       post :create, params: { user: { email: 'foo@foo.co', password: nil } }
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to redirect_to('/login?register=true')
+      expect(flash[:alert]).to match(/invalid credentials/i)
     end
   end
 end

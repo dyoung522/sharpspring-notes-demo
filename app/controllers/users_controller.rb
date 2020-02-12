@@ -4,26 +4,36 @@ class UsersController < ApplicationController
   skip_before_action :authorize_user, only: %i[create login]
 
   def create
+    if User.find_by(email: params[:user][:email])
+      redirect_to login_path, alert: 'User already exists, please log in'
+      return
+    end
+
     @user = User.create user_params
 
     if @user.valid?
       session[:user_id] = @user.id
-      render root_path, status: :created
+      redirect_to root_path
     else
-      render login_path, status: :unprocessable_entity, alert: 'Invalid credentials provided'
+      redirect_to login_path(register: true), alert: 'Invalid Credentials Provided'
     end
   end
 
   def home; end
 
   def login
+    if logged_in?
+      redirect_to root_path
+      return
+    end
+
     @user = User.new
-    redirect_to root_path if logged_in?
+    @login_form = params[:register].to_s.downcase == 'true' ? 'registration_form' : 'login_form'
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

@@ -1,0 +1,9 @@
+<h1>Please Log In</h1>
+<%= form_for(@user, url: {controller: 'sessions', action: 'create'}) do |f|%>
+  <%= f.text_field :email%><br>
+  <%= f.label :email%><br>
+  <%= f.password_field :password%><br>
+  <%= f.label :password%><br>
+  <%= f.submit 'Login' %>
+<%end%>
+<p>If you don't have an account, please <%= link_to 'Register', login_path(register: true)%>

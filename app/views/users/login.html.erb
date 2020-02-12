@@ -1,8 +1,2 @@
-<h1>Please Log In</h1>
-<%= form_for(@user, url: {controller: 'sessions', action: 'create'}) do |f|%>
-  <%= f.label :email%><br>
-  <%= f.text_field :email%><br>
-  <%= f.label :password%><br>
-  <%= f.password_field :password%><br>
-  <%= f.submit 'Login' %>
-<%end%>
+<!-- We render here so we can pick up the flash messages from the application view -->
+<%= render partial: @login_form %>
