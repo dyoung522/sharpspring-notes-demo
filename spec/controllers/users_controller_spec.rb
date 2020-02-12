@@ -16,9 +16,9 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to have_http_status(:created)
     end
 
-    it 'returns http unauthorized when invalid' do
+    it 'returns http unprocessable_entity when invalid' do
       post :create, params: { user: { email: 'foo@foo.co', password: nil } }
-      expect(response).to have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 end
