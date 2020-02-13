@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  let(:user) { create(:user) }
+
   describe 'GET #login' do
     it 'returns http success' do
       get :login
@@ -10,7 +12,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'redirects to home page when already logged in' do
-      session[:user_id] = create(:user).id
+      session[:user_id] = user.id
       get :login
 
       expect(response).to redirect_to('/')
@@ -19,8 +21,8 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'POST #create' do
     it 'redirects to the login page when user exists' do
-      create(:user)
-      post :create, params: { user: attributes_for(:user) }
+      session[:user_id] = user.id
+      post :create, params: { user: user.attributes }
 
       expect(response).to redirect_to('/login')
       expect(flash[:alert]).to match(/user.*exists.*log in/i)

@@ -25,6 +25,9 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
   gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'guard'
+  gem 'guard-rspec', require: false
   gem 'rspec-rails', github: 'rspec/rspec-rails', branch: '4-0-maintenance'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
