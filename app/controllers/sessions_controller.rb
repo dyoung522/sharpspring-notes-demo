@@ -8,14 +8,14 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_url)
     else
-      redirect_to login_path, alert: 'Login Incorrect'
+      redirect_to login_url, alert: 'Login Incorrect'
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_path, notice: 'You have been successfully logged out'
+    redirect_to login_url, notice: 'You have been successfully logged out'
   end
 end

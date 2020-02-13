@@ -1,24 +1,15 @@
-# README
+# Notes Code Challenge for Sharpspring
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In the spirit of the exercise, I've built this app entirely from scratch, with no extra gems used outside testing/development purposes.
+Had this been a production ready app, I _probably_ would have opted to use some additional "best-practice" gems,
+such as `Devise` for authentication, and `SimpleForms` for better form structures.
 
-Things you may want to cover:
+Here are the additional Gems I've used:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- RSpec -- testing suite
+  - FactoryBot - Fixtures replacement
+  - Shoulda-matchers - additional RSpec expectations for rails
+  - Capybara - headless Request testing
+- Guard - test runner
+- Rubocop - Ruby linter
+- SimpleCov - Code coverage reporting

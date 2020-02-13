@@ -25,6 +25,7 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    @note.user_id = current_user.id
 
     respond_to do |format|
       if @note.save
@@ -70,6 +71,6 @@ class NotesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def note_params
-    params.require(:note).permit(:title, :body, :user_id)
+    params.require(:note).permit(:title, :body)
   end
 end
