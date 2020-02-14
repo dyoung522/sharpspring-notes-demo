@@ -1,13 +1,23 @@
 <h1>Please Register</h1>
-<%= form_for @user, url: { action: 'create' } do |f|%>
-  <%= f.text_field :name%><br>
-  <%= f.label :name%><br>
-  <%= f.text_field :email%><br>
-  <%= f.label :email%><br>
-  <%= f.password_field :password%><br>
-  <%= f.label :password%><br>
-  <%= f.password_field :password_confirmation%><br>
-  <%= f.label :password_confirmation%><br>
-  <%= f.submit 'Register' %>
+<%= form_with(model: @user, local: true, url: {action: 'create'}) do |form|%>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Register' %>
+  </div>
 <%end%>
 <p>If you already have an account, please <%= link_to 'Login', login_path(register: false)%>

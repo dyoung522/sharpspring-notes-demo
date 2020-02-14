@@ -1,6 +1,13 @@
 <h1>Welcome <%= current_user.name %></h1>
 <p>Not you? <%= link_to :logout, logout_path %>
-  <%= button_to "New Note", new_note_path, method: :get, id: "new-note" %>
+  <%= button_to "New Note", new_note_path, method: :get, id: "new-note", class: 'lg-only'%>
+  <%= button_to "+", new_note_path, method: :get, id: "new-note", class: 'sm-only'%>
+  <% if @notes.empty? %>
+    <div id="empty-note">
+      Doesn't look like you have any notes yet
+      <div class="add-note"><%= link_to "why not add one?", new_note_path %></div>
+    </div>
+  <% end %>
   <section id="notes">
     <% @notes.each do |note| %>
       <%= render "note", note: note %>
