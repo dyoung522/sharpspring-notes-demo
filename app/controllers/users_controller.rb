@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :authorize_user, only: %i[create login]
 
   def create
-    if User.find_by(email: params[:user][:email])
+    if User.find_by(email: params[:user][:email].downcase)
       redirect_to login_url, alert: "User already exists, please log in"
       return
     end
