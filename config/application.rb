@@ -23,6 +23,9 @@ Bundler.require(*Rails.groups)
 
 module Notes
   class Application < Rails::Application
+    # Set the timezone to our local time
+    config.time_zone = 'Eastern Time (US & Canada)'
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
