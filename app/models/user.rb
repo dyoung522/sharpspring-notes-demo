@@ -6,4 +6,8 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
 
   validates :email, presence: true, uniqueness: {case_sensitive: false}
+
+  def proper_name
+    name.titleize
+  end
 end

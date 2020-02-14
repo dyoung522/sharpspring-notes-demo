@@ -2,6 +2,6 @@
   <%= link_to "edit", edit_note_path(note), class: "material-icons controls note-edit" %>
   <div class="title"><%= note.title %></div>
   <div class="body"><%= note.body %></div>
-  <div class="footer">Last updated on <%= note.updated_at.strftime("%b %d, %Y @ %I:%M %p") %> by <%= note.user.name.capitalize %></div>
+  <div class="footer">Last updated on <%= note.updated_at.strftime("%b %d, %Y @ %I:%M %p") %> by <%= note.user.proper_name %></div>
   <%= link_to "delete_forever", note, method: :delete, data: { confirm: "Are you sure?" }, class: "material-icons controls note-destroy" %>
 </div>
