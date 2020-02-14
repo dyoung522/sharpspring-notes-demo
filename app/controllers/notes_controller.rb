@@ -18,7 +18,7 @@ class NotesController < ApplicationController
     @note.user = current_user
 
     if @note.save
-      redirect_to notes_url, notice: "Note was successfully created."
+      redirect_to root_url, notice: "Note was successfully created."
     else
       render :new
     end
@@ -26,7 +26,7 @@ class NotesController < ApplicationController
 
   def update
     if @note.update(note_params)
-      redirect_to notes_url, notice: "Note was successfully updated."
+      redirect_to root_url, notice: "Note was successfully updated."
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class NotesController < ApplicationController
 
   def destroy
     @note.destroy
-    redirect_to notes_url, notice: "Note was successfully destroyed."
+    redirect_to root_url, notice: "Note was successfully destroyed."
   end
 
   private

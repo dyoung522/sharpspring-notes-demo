@@ -17,14 +17,21 @@
   float: right;
 }
 
+#note_body {
+  padding: 5px;
+  font-size: 14px;
+  width: 400px;
+  height: 400px;
+}
+
 .note {
   height: auto;
-  min-height: 300px;
-  width: 300px;
+  min-height: 200px;
+  width: 400px;
   padding: 20px;
   margin: 10px;
   display: flex;
-  flex: 0 0 25%;
+  flex: 0 0 auto;
   display: block;
   background-color: $ui-yellow-light;
   border-radius: 10px;

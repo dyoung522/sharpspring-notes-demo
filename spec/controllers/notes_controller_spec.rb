@@ -8,7 +8,7 @@ RSpec.describe NotesController, type: :controller do
   # adjust the attributes here as well.
   let(:note) { create(:note) }
   let(:valid_attributes) { attributes_for :note }
-  let(:invalid_attributes) { attributes_for(:note, title: Faker::String.random(length: 40)) }
+  let(:invalid_attributes) { attributes_for(:note, title: nil, body: nil) }
   let(:user) { create(:user) }
 
   before { session[:user_id] = user.id }
@@ -48,7 +48,7 @@ RSpec.describe NotesController, type: :controller do
 
       it "redirects to the created note" do
         post :create, params: {note: valid_attributes}
-        expect(response).to redirect_to(notes_url)
+        expect(response).to redirect_to(root_url)
       end
     end
 
@@ -72,7 +72,7 @@ RSpec.describe NotesController, type: :controller do
 
       it "redirects to the note" do
         put :update, params: {id: note.to_param, note: valid_attributes}
-        expect(response).to redirect_to(notes_url)
+        expect(response).to redirect_to(root_url)
       end
     end
 
@@ -92,7 +92,7 @@ RSpec.describe NotesController, type: :controller do
 
     it "redirects to the notes list" do
       delete :destroy, params: {id: note.to_param}
-      expect(response).to redirect_to(notes_url)
+      expect(response).to redirect_to(root_url)
     end
   end
 end

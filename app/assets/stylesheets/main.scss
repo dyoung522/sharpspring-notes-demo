@@ -54,6 +54,10 @@ input {
       box-shadow: 3px 2px 5px $ui-gray-med;
     }
   }
+  &[type="text"],
+  &[type="password"] {
+    width: 400px;
+  }
 }
 
 th {
