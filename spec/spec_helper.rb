@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'simplecov'
-require 'capybara/rspec'
-require 'faker'
+require "simplecov"
+require "capybara/rspec"
+require "faker"
 
-SimpleCov.start 'rails' do
+SimpleCov.start "rails" do
   add_filter [%r{app/channels}, %r{app/jobs}, %r{app/mailers}]
 end
 

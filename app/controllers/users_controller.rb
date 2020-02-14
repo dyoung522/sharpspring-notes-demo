@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def create
     if User.find_by(email: params[:user][:email])
-      redirect_to login_url, alert: 'User already exists, please log in'
+      redirect_to login_url, alert: "User already exists, please log in"
       return
     end
 
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_url
     else
-      redirect_to login_url(register: true), alert: 'Invalid Credentials Provided'
+      redirect_to login_url(register: true), alert: "Invalid Credentials Provided"
     end
   end
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     end
 
     @user = User.new
-    @login_form = params[:register].to_s.downcase == 'true' ? 'registration_form' : 'login_form'
+    @login_form = params[:register].to_s.downcase == "true" ? "registration_form" : "login_form"
   end
 
   private
