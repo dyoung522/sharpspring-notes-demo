@@ -123,3 +123,16 @@
     }
   }
 }
+
+#title-remaining-count,
+#body-remaining-count {
+  font-size: 12px;
+  font-style: italic;
+  padding-top: 2px;
+  color: red;
+}
+
+.count-error {
+  background-color: rgba(255, 0, 0, 0.2);
+  // border: 3px solid red;
+}
