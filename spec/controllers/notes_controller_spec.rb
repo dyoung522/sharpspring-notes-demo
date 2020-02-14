@@ -21,9 +21,8 @@ RSpec.describe NotesController, type: :controller do
   end
 
   describe 'GET #show' do
-    it 'returns a success response' do
-      get :show, params: { id: note.to_param }
-      expect(response).to be_successful
+    it 'does not route' do
+      expect(get: "/notes/#{note.id}").not_to be_routable
     end
   end
 
@@ -51,7 +50,7 @@ RSpec.describe NotesController, type: :controller do
 
       it 'redirects to the created note' do
         post :create, params: { note: valid_attributes }
-        expect(response).to redirect_to(Note.last)
+        expect(response).to redirect_to(notes_url)
       end
     end
 
@@ -75,7 +74,7 @@ RSpec.describe NotesController, type: :controller do
 
       it 'redirects to the note' do
         put :update, params: { id: note.to_param, note: valid_attributes }
-        expect(response).to redirect_to(note)
+        expect(response).to redirect_to(notes_url)
       end
     end
 

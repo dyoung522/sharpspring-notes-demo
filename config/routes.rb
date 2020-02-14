@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :notes
+  resources :notes, except: %i[show]
   resources :sessions, only: %i[create destroy]
   resources :users, only: %i[new create]
 

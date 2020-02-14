@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :note do
-    title { Faker::Quote.yoda.truncate(30) }
-    body { Faker::Quote.matz.truncate(1000) }
-    user { create(:user) }
+    user
+    title { Faker::Lorem.sentence.truncate(30) }
+    body { Faker::Lorem.sentence(word_count: 25).truncate(1000) }
   end
 end

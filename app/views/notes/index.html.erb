@@ -1,29 +1,22 @@
-<h1>Notes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<h1>Welcome <%= current_user.name %></h1>
+<p>Not you? <%= link_to :logout, logout_path %>
+  <%= button_to 'New Note', new_note_path, method: :get, id: 'new-note' %>
+  <section id='notes'>
     <% @notes.each do |note| %>
-      <tr>
-        <td><%= note.title %></td>
-        <td><%= note.body %></td>
-        <td><%= note.user_id %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class='note'>
+        <%= link_to 'edit', edit_note_path(note), class: 'material-icons controls note-edit' %>
+        <div class='title'><%= note.title %></div>
+        <div class='body'><%= note.body %></div>
+        <%= link_to 'delete_forever', note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'material-icons controls note-destroy' %>
+        <!--
+        <div class='note-controls'>
+          <ul>
+            <li><%= link_to 'Show', note, class: 'button' %></li>
+            <li><%= link_to 'Edit', edit_note_path(note), class: 'button' %></li>
+            <li><%= link_to 'X', note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button' %></li>
+          </ul>
+        </div>
+        -->
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Note', new_note_path %>
+  </section>

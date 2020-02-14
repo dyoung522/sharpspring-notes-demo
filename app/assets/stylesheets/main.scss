@@ -1,6 +1,10 @@
+@import "globals";
+@import "notices";
+@import "notes";
+
 body {
-  background-color: #fff;
-  color: #333;
+  background-color: $ui-background-light;
+  color: $ui-gray-dark;
   margin: 33px;
 }
 
@@ -15,22 +19,41 @@ td {
 }
 
 pre {
-  background-color: #eee;
+  background-color: $ui-background-dark;
   padding: 10px;
   font-size: 11px;
 }
 
 a {
-  color: #000;
+  text-decoration: none;
+  color: $ui-blue-dark;
+  padding: 5px;
+
+  &:hover {
+    color: $ui-gray-light;
+    background-color: $ui-blue-dark;
+    border-radius: 3px;
+    transition-property: color background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+  }
 }
 
-a:visited {
-  color: #666;
-}
+input {
+  padding: 5px;
+  font-size: 14px;
 
-a:hover {
-  color: #fff;
-  background-color: #000;
+  &[type="submit"] {
+    color: $ui-gray-light;
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: $ui-blue-dark;
+    border-radius: 5px;
+
+    &:hover {
+      box-shadow: 3px 2px 5px $ui-gray-med;
+    }
+  }
 }
 
 th {
@@ -44,6 +67,17 @@ td {
 div.field,
 div.actions {
   margin-bottom: 10px;
+}
+
+.button {
+  margin: 0;
+  padding: 5px 8px;
+  border: 1px solid $ui-blue-light;
+  border-radius: 5px;
+  &:hover {
+    color: $ui-gray-light;
+    background-color: $ui-blue-light;
+  }
 }
 
 .field_with_errors {
