@@ -1,42 +1,84 @@
-// Place all the styles related to the notes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-
 #notes {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
 
 #new-note {
-  position: absolute;
-  right: 10px;
-  top: 10px;
   float: right;
+  position: fixed;
+  font-size: 18px;
+
+  &.sm-only {
+    right: 10px;
+    bottom: 10px;
+    border-radius: 50%;
+    z-index: 9999;
+
+    @media only screen and (min-width: 768px) {
+      visibility: hidden;
+    }
+  }
+
+  &.lg-only {
+    right: 10px;
+    top: 10px;
+    visibility: hidden;
+
+    @media only screen and (min-width: 768px) {
+      visibility: visible;
+    }
+  }
 }
 
+// TextArea for form edit
 #note_body {
   padding: 5px;
   font-size: 14px;
-  width: 400px;
-  height: 400px;
+  height: 300px;
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    width: 400px;
+  }
+}
+
+#empty-note {
+  width: 50%;
+  margin: 50px auto;
+  text-align: center;
+
+  > .add-note {
+    margin: 10px auto;
+    width: 50%;
+  }
 }
 
 .note {
-  height: auto;
-  min-height: 200px;
-  width: 400px;
-  padding: 20px;
-  margin: 10px;
+  position: relative;
   display: flex;
-  flex: 0 0 auto;
-  display: block;
+  flex-direction: column;
+  flex: 1 0 100%;
+  min-height: 200px;
+  margin-bottom: 20px;
+  padding: 20px;
   background-color: $ui-yellow-light;
   border-radius: 10px;
   box-shadow: 10px 5px 8px $ui-gray-med;
-  position: relative;
+
+  @media only screen and (min-width: 768px) {
+    flex: 0 0 auto;
+    width: 400px;
+    margin-right: 20px;
+  }
 
   > .title {
     font-weight: bold;
@@ -46,6 +88,7 @@
 
   > .body {
     margin-bottom: 20px;
+    padding-bottom: 20px;
   }
 
   > .footer {
@@ -53,6 +96,7 @@
     bottom: 10px;
     font-size: 12px;
     font-style: italic;
+    width: 80%;
   }
 
   > .controls {
