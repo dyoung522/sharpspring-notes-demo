@@ -37,6 +37,9 @@ module Notes
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Required for Heroku
+    config.assets.initialize_on_precompile = false
+
     config.generators do |g|
       g.test_framework :rspec,
                        fixtures: false,
