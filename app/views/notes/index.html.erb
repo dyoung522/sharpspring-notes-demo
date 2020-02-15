@@ -22,6 +22,10 @@
   </section>
   <section id="footer">
     <div class="notes-count">
-      <%= @notes.count %> notes found
+      <% if @notes.count > 0 %>
+        <%= pluralize @notes.count, 'notes' %> found
+      <% else %>
+        no notes found
+      <% end %>
     </div>
   </section>
