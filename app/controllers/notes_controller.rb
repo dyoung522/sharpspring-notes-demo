@@ -4,7 +4,14 @@ class NotesController < ApplicationController
   before_action :set_note, only: %i[edit update destroy]
 
   def index
-    @notes = Note.where(user: current_user).order(updated_at: :desc)
+    search = params.has_key?(:search)
+
+    if search
+      @search_pattern = params[:search]
+      @notes = Note.search params[:search]
+    else
+      @notes = Note.where(user: current_user).order(updated_at: :desc)
+    end
   end
 
   def new
@@ -46,6 +53,6 @@ class NotesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def note_params
-    params.require(:note).permit(:title, :body)
+    params.require(:note).permit(:title, :body, :search)
   end
 end

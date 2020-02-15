@@ -19,4 +19,12 @@ class Note < ApplicationRecord
   def check_body
     self.body = body.truncate(MAX_BODY_LENGTH) if body && body.length > MAX_BODY_LENGTH
   end
+
+  ##
+  # Class Methods
+  ##
+
+  def self.search(search_term)
+    Note.all.where("lower(title) LIKE :search OR lower(body) LIKE :search", search: "%#{search_term.downcase}%")
+  end
 end

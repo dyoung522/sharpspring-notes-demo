@@ -1,0 +1,50 @@
+@import "globals";
+
+.search-bar-group {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  align-items: center;
+  font-size: 14px;
+  top: 50px;
+  right: 10px;
+
+  @media only screen and (min-width: 768px) {
+    top: 10px;
+    right: 130px;
+  }
+
+  > .search-field {
+    font-size: 14px;
+    margin-right: 2px;
+    width: 150px;
+
+    @media only screen and (min-width: 768px) {
+      width: 200px;
+    }
+  }
+
+  > .search-btn {
+    font-size: 14px;
+    padding: 7px;
+  }
+
+  > .search-clear-btn {
+    padding: 2px 7px;
+    font-size: 10px;
+    position: relative;
+    left: 160px;
+    border-radius: 50%;
+    background-color: $ui-gray-light;
+    color: $ui-blue-dark;
+
+    @media only screen and (min-width: 768px) {
+      left: 210px;
+    }
+
+    &:hover {
+      color: $ui-gray-light;
+      background-color: $ui-blue-light;
+    }
+  }
+}

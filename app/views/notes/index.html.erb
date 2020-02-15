@@ -1,15 +1,27 @@
 <h1>Welcome <%= current_user.proper_name %></h1>
 <p>Not you? <%= link_to :logout, logout_path %>
-  <%= button_to "New Note", new_note_path, method: :get, id: "new-note", class: 'lg-only'%>
-  <%= button_to "+", new_note_path, method: :get, id: "new-note", class: 'sm-only'%>
+  <%= render "search_bar", notes: @notes %>
+  <%= button_to "New Note", new_note_path, method: :get, id: "new-note", class: "lg-only"%>
+  <%= button_to "+", new_note_path, method: :get, id: "new-note", class: "sm-only"%>
   <% if @notes.empty? %>
-    <div id="empty-note">
-      Doesn't look like you have any notes yet
-      <div class="add-note"><%= link_to "why not add one?", new_note_path %></div>
-    </div>
+    <% if @search_pattern %>
+      <div id="empty-note">
+        Sorry, but no notes match "<%= @search_pattern %>"... <%= link_to "please try another search term", root_url %>
+      </div>
+    <% else %>
+      <div id="empty-note">
+        Doesn"t look like you have any notes yet
+        <div class="add-note"><%= link_to "why not add one?", new_note_path %></div>
+      </div>
+    <% end %>
   <% end %>
   <section id="notes">
     <% @notes.each do |note| %>
       <%= render "note", note: note %>
     <% end %>
+  </section>
+  <section id="footer">
+    <div class="notes-count">
+      <%= @notes.count %> notes found
+    </div>
   </section>

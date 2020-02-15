@@ -18,6 +18,13 @@ RSpec.describe NotesController, type: :controller do
       get :index, params: {}
       expect(response).to be_successful
     end
+
+    context "with search" do
+      it "returns a search response" do
+        get :index, params: {search: "foo"}
+        expect(response).to be_successful
+      end
+    end
   end
 
   describe "GET #show" do

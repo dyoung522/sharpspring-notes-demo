@@ -6,11 +6,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
+  margin-bottom: 50px;
 
   @media only screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    margin: 0;
   }
 }
 
@@ -136,5 +138,21 @@
 
 .count-error {
   background-color: rgba(255, 0, 0, 0.2);
-  // border: 3px solid red;
+}
+
+#footer {
+  > .notes-count {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    padding: 5px;
+    font-style: italic;
+    background-color: $ui-gray-light;
+
+    @media only screen and (min-width: 768px) {
+      bottom: 5px;
+      right: 5px;
+      left: auto;
+    }
+  }
 }

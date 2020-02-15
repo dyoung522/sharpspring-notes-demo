@@ -1,0 +1,7 @@
+<%= form_tag root_path, method: :get do %>
+  <div class="search-bar-group">
+    <%= link_to "X", root_url, class: 'search-clear-btn' %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search", class: "search-field" %>
+    <%= submit_tag "search", name: nil, class: 'material-icons search-btn' %>
+  </div>
+<% end %>

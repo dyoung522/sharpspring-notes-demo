@@ -38,4 +38,24 @@ RSpec.describe Note, type: :model do
   it "is not valid when both title and body are empty" do
     expect(Note.new(user: create(:user))).not_to be_valid
   end
+
+  context "Note#search" do
+    before do
+      create(:note)
+      create(:note, title: "lorraine's title")
+      create(:note, title: "lorraine's title too", body: "lorraine's body")
+    end
+
+    it "only returns search results" do
+      expect(Note.search("foobar").count).to eq 0
+    end
+
+    it "searches in title and body" do
+      expect(Note.search("lorraine").count).to eq 2
+    end
+
+    it "performs a case-insensitive search" do
+      expect(Note.search("lOrrAiNe").count).to eq 2
+    end
+  end
 end
