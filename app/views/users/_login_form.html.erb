@@ -1,15 +1,16 @@
-<h1>Please Log In</h1>
-<%= form_with(model: @user, local: true, url: {controller: 'sessions', action: 'create'}) do |form|%>
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= form.submit 'Login' %>
-  </div>
-<%end%>
-<p>If you don't have an account, please <%= link_to 'Register', login_path(register: true)%>
+<section id="login-form">
+  <%= form_with(model: @user, local: true, url: {controller: 'sessions', action: 'create'}) do |form|%>
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.text_field :email, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+    <div class="actions">
+      <%= form.submit 'Login' %>
+    </div>
+  <%end%>
+  <p>If you don't have an account, please <%= link_to 'Register', login_path(register: true)%></p>
+</div>

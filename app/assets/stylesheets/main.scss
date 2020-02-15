@@ -1,15 +1,15 @@
 @import "globals";
 @import "notices";
-@import "notes";
+@import "header";
 @import "search";
+@import "notes";
+@import "users";
 
 body {
   background-color: $ui-background-light;
   color: $ui-gray-dark;
-
-  @media only screen and (min-width: 768px) {
-    margin: 30px;
-  }
+  padding: 0;
+  margin: 0;
 }
 
 body,
@@ -51,10 +51,11 @@ input {
     color: $ui-gray-light;
     padding: 10px 15px;
     background-color: $ui-blue-dark;
+    border: 1px solid $ui-blue-dark;
     border-radius: 5px;
 
     &:hover {
-      box-shadow: 3px 2px 5px $ui-gray-med;
+      border: 1px solid $ui-gray-dark;
     }
   }
 

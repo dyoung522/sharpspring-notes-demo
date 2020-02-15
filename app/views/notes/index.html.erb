@@ -1,6 +1,5 @@
-<h1>Welcome <%= current_user.proper_name %></h1>
-<p>Not you? <%= link_to :logout, logout_path %>
-  <%= render "search_bar", notes: @notes %>
+<section id="notes">
+  <%= render "search_bar" %>
   <%= button_to "New Note", new_note_path, method: :get, id: "new-note", class: "lg-only"%>
   <%= button_to "+", new_note_path, method: :get, id: "new-note", class: "sm-only"%>
   <% if @notes.empty? %>
@@ -15,17 +14,16 @@
       </div>
     <% end %>
   <% end %>
-  <section id="notes">
-    <% @notes.each do |note| %>
-      <%= render "note", note: note %>
+  <% @notes.each do |note| %>
+    <%= render "note", note: note %>
+  <% end %>
+</section>
+<section id="footer">
+  <div class="notes-count">
+    <% if @notes.count > 0 %>
+      <%= pluralize @notes.count, 'notes' %> found
+    <% else %>
+      no notes found
     <% end %>
-  </section>
-  <section id="footer">
-    <div class="notes-count">
-      <% if @notes.count > 0 %>
-        <%= pluralize @notes.count, 'notes' %> found
-      <% else %>
-        no notes found
-      <% end %>
-    </div>
-  </section>
+  </div>
+</section>

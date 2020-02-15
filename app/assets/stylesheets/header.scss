@@ -1,0 +1,23 @@
+@import "globals";
+
+#header {
+  position: relative;
+  margin: 0;
+  height: 60px;
+  padding: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $ui-gray-dark;
+  background-color: $ui-blue-light;
+  box-shadow: 0 0 10px $ui-gray-dark;
+
+  h1 {
+    font-size: 32px;
+    padding-bottom: 10px;
+    margin: 0;
+  }
+
+  .logout {
+    padding: 5px;
+  }
+}
