@@ -5,24 +5,24 @@ class NotesController < ApplicationController
 
   def index
     search = params.has_key?(:search)
+    @notes = current_user.notes
 
     if search
       @search_pattern = params[:search]
-      @notes = Note.search params[:search]
-    else
-      @notes = Note.where(user: current_user).order(updated_at: :desc)
+      @notes = @notes.search(params[:search])
     end
+
+    @notes = @notes.order(updated_at: :desc)
   end
 
   def new
-    @note = Note.new
+    @note = current_user.notes.new
   end
 
   def edit; end
 
   def create
-    @note = Note.new(note_params)
-    @note.user = current_user
+    @note = current_user.notes.new(note_params)
 
     if @note.save
       redirect_to root_url, notice: "Note was successfully created."
@@ -48,7 +48,7 @@ class NotesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_note
-    @note = Note.find(params[:id])
+    @note = current_user.notes.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

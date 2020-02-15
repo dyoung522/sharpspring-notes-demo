@@ -40,10 +40,12 @@ RSpec.describe Note, type: :model do
   end
 
   context "Note#search" do
+    let(:user) { create :user }
     before do
-      create(:note)
-      create(:note, title: "lorraine's title")
-      create(:note, title: "lorraine's title too", body: "lorraine's body")
+      create(:note, user: user)
+      create(:note, user: user, title: "lorraine's title")
+      create(:note, user: user, title: "lorraine's title too", body: "lorraine's body")
+      create(:note, title: "another lorraine's title")
     end
 
     it "only returns search results" do
@@ -51,11 +53,15 @@ RSpec.describe Note, type: :model do
     end
 
     it "searches in title and body" do
-      expect(Note.search("lorraine").count).to eq 2
+      expect(Note.search("lorraine").count).to eq 3
     end
 
     it "performs a case-insensitive search" do
-      expect(Note.search("lOrrAiNe").count).to eq 2
+      expect(Note.search("lOrrAiNe").count).to eq 3
+    end
+
+    it "searches in title and body" do
+      expect(Note.where(user: user).search("lorraine").count).to eq 2
     end
   end
 end

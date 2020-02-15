@@ -6,10 +6,10 @@ RSpec.describe NotesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Note. As you add validations to Note, be sure to
   # adjust the attributes here as well.
-  let(:note) { create(:note) }
-  let(:valid_attributes) { attributes_for :note }
-  let(:invalid_attributes) { attributes_for(:note, title: nil, body: nil) }
   let(:user) { create(:user) }
+  let(:note) { create(:note, user: user) }
+  let(:valid_attributes) { attributes_for(:note) }
+  let(:invalid_attributes) { attributes_for(:note, title: nil, body: nil) }
 
   before { session[:user_id] = user.id }
 
@@ -93,7 +93,7 @@ RSpec.describe NotesController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested note" do
-      note = create(:note)
+      note = create(:note, user: user)
       expect { delete :destroy, params: {id: note.to_param} }.to change(Note, :count).by(-1)
     end
 

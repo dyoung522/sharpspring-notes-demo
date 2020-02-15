@@ -25,6 +25,6 @@ class Note < ApplicationRecord
   ##
 
   def self.search(search_term)
-    Note.all.where("lower(title) LIKE :search OR lower(body) LIKE :search", search: "%#{search_term.downcase}%")
+    Note.where("lower(title) LIKE :search OR lower(body) LIKE :search", search: "%#{search_term.downcase}%")
   end
 end
